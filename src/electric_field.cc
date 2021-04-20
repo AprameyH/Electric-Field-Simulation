@@ -1,4 +1,6 @@
 #include <arrow.h>
+#include <cinder/gl/wrapper.h>
+#include <cinder/gl/gl.h>
 #include "electric_field.h"
 
 namespace chargefield {
@@ -8,6 +10,10 @@ namespace chargefield {
         for (Arrow arrow : arrow_layout_) {
             arrow.DrawArrow(glm::vec2(500, 500));
         }
+
+        ci::gl::drawSolidCircle(glm::vec2(500,500), 5);
+        ci::gl::color(ci::Color("white"));
+        ci::gl::drawStrokedRect(ci::Rectf(kFirstCorner, kSecondCorner));
     }
 
     void chargefield::ElectricField::AdvanceOneFrame() {

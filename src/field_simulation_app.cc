@@ -19,14 +19,19 @@ namespace chargefield{
     }
 
     std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
+        std::vector<Arrow> arrows;
         glm::vec2 start(100, 100);
-        for (size_t i = 0; i < 7; i++) {
-            for (size_t j = 0; j < 7; j++) {
-                Arrow arrow(glm::vec2(start.x + 25, start.y));
-            }
-            start.y = start.y + 25;
-        }
-        return std::vector<Arrow>();
+        Arrow arrow1(glm::vec2(150,150));
+        arrows.push_back(arrow1);
+        Arrow arrow2(glm::vec2(750,750));
+        arrows.push_back(arrow2);
+        Arrow arrow3(glm::vec2(750,150));
+        arrows.push_back(arrow3);
+        Arrow arrow4(glm::vec2(150,750));
+        arrows.push_back(arrow4);
+        Arrow arrow5(glm::vec2(400,150));
+        arrows.push_back(arrow5);
+        return arrows;
     }
 
 }  // namespace chargefield
