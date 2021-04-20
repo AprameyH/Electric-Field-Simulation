@@ -11,10 +11,14 @@ namespace chargefield {
 
         void AdvanceOneFrame();
 
+        const int charge_radius_ = 5;
+
         const glm::vec2 kFirstCorner{100, 100};
         const glm::vec2 kSecondCorner{800, 800};
     private:
         std::vector<Arrow> arrow_layout_;
+
+        glm::vec2 charge_pos_;
     };
 }
 
