@@ -1,9 +1,8 @@
 #pragma once
 
 #include "cinder/app/App.h"
-#include "cinder/app/RendererGl.h"
 #include "arrow.h"
-#import "electric_field.h"
+#include "electric_field.h"
 
 namespace chargefield {
     /**

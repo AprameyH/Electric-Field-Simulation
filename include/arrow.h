@@ -1,7 +1,6 @@
 #pragma once
 
 #include <glm/vec2.hpp>
-#include "gas_container.h"
 
 class Arrow {
 private:

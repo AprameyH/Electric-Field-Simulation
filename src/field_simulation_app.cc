@@ -1,8 +1,9 @@
+#include <cinder/gl/wrapper.h>
 #include "field_simulation_app.h"
 
 namespace chargefield{
 
-    ElectricField(GenerateArrowList()) {
+    ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList()){
         ci::app::setWindowSize(kWindowSize, kMargin);
     }
 
