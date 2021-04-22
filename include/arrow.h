@@ -5,7 +5,7 @@
 class Arrow {
 private:
     glm::vec2 position_;
-
+    const int kLength = 100;
 
 public:
     Arrow(const glm::vec2 &position);
