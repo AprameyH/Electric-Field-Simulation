@@ -10,6 +10,7 @@ namespace chargefield {
     void chargefield::ElectricField::Display() const {
         for (Arrow arrow : arrow_layout_) {
             arrow.DrawArrow(charge_pos_);
+            ci::gl::drawSolidCircle(arrow.get_position(), 3);
         }
 
         ci::gl::drawSolidCircle(charge_pos_, charge_radius_);
