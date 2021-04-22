@@ -23,7 +23,7 @@ namespace chargefield {
 
         for (size_t i = 0; i < 6; i++) {
             for (size_t j = 0; j < 6; j++) {
-                Arrow arrow(glm::vec2(kArrowMargin + j * (kArrowMargin/2), kArrowMargin + i *(kArrowMargin/2)));
+                Arrow arrow(glm::vec2(kArrowMargin + j * (kArrowMargin / 2), kArrowMargin + i * (kArrowMargin / 2)));
                 arrows.push_back(arrow);
             }
         }

@@ -23,7 +23,7 @@ namespace chargefield {
          * Used to initialize a container object.
          * @return a vector of Arrow objects.
          */
-        std::vector <Arrow> GenerateArrowList() const;
+        std::vector<Arrow> GenerateArrowList() const;
 
     private:
         const int kWindowSize = 1000;

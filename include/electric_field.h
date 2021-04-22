@@ -5,7 +5,7 @@
 namespace chargefield {
     class ElectricField {
     public:
-        explicit ElectricField(const std::vector <Arrow> &arrowLayout);
+        explicit ElectricField(const std::vector<Arrow> &arrowLayout);
 
         void Display() const;
 
