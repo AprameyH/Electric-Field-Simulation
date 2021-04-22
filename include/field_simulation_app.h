@@ -17,8 +17,6 @@ namespace chargefield {
 
         void update() override;
 
-        const int kWindowSize = 1000;
-        const int kMargin = 800;
 
         /**
          * The method generates the initial arrows.
@@ -28,6 +26,10 @@ namespace chargefield {
         std::vector <Arrow> GenerateArrowList() const;
 
     private:
+        const int kWindowSize = 1000;
+        const int kMargin = 1000;
+
+        const int kArrowMargin = 200;
         ElectricField electric_field_;
 
     };

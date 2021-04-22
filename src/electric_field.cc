@@ -4,7 +4,7 @@
 #include "electric_field.h"
 
 namespace chargefield {
-    chargefield::ElectricField::ElectricField(const std::vector<Arrow> &arrowLayout) : arrow_layout_(arrowLayout), charge_pos_(200,500) {
+    chargefield::ElectricField::ElectricField(const std::vector<Arrow> &arrowLayout) : arrow_layout_(arrowLayout), charge_pos_(600,500) {
     }
 
     void chargefield::ElectricField::Display() const {
