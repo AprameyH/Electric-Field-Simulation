@@ -1,10 +1,10 @@
 #include "charge.h"
 
-Charge::Charge(bool is_positive, const glm::vec2 &position, double charge_val) : is_positive_(is_positive), position_(position), charge_val_(charge_val) {
+Charge::Charge(const glm::vec2 &position, double charge_val) : position_(position), charge_val_(charge_val) {
 }
 
 bool Charge::is_positive() const {
-    return is_positive_;
+    return charge_val_ >= 0;
 }
 
 const glm::vec2 &Charge::get_position() const {

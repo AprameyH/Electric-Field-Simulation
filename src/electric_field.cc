@@ -12,24 +12,25 @@ namespace chargefield {
     }
 
     void chargefield::ElectricField::Display() const {
-        //ci::gl::color(ci::Color("white"));
-        ci::gl::drawStrokedRect(ci::Rectf(kFirstCorner, kSecondCorner));
+
 
         for (Arrow arrow : arrow_layout_) {
-            arrow.DrawArrow(FindDirection(CalculateFieldDirection(arrow.get_position()).second,arrow.get_position()));
-            ci::gl::drawSolidCircle(arrow.get_position(), charge_radius_);
+            double angle = CalculateFieldDirection(arrow.get_position()).second;
+            glm::vec2 direction = FindDirection(angle, arrow.get_position());
+            arrow.DrawArrow(direction);
         }
 
         for (const Charge &charge : charge_layout_) {
             if (charge.is_positive()) {
-                //ci::gl::color(ci::Color("blue"));
+                ci::gl::color(ci::Color("red"));
             } else {
-                //ci::gl::color(ci::Color("red"));
+                ci::gl::color(ci::Color("blue"));
             }
             ci::gl::drawSolidCircle(charge.get_position(), charge_radius_);
-            //ci::gl::color(ci::Color("white"));
         }
 
+        ci::gl::color(ci::Color("white"));
+        ci::gl::drawStrokedRect(ci::Rectf(kFirstCorner, kSecondCorner));
 
     }
 
@@ -62,8 +63,8 @@ namespace chargefield {
     }
 
     glm::vec2 ElectricField::FindDirection(double angle, glm::vec2 arrow_pos) const {
-        float x_end = 5 * cos(angle) + arrow_pos.x;
-        float y_end = 5 * sin(angle) + arrow_pos.y;
+        float x_end = 100 * cos(angle) + arrow_pos.x;
+        float y_end = 100 * sin(angle) + arrow_pos.y;
 
         glm::vec2 end_point(x_end, y_end);
         return end_point;

@@ -20,7 +20,7 @@ namespace chargefield {
         const glm::vec2 kSecondCorner{800, 800};
 
         const int charge_radius_ = 5;
-        const double kCoulomb = 8.988 * pow(10,9);
+        const double kCoulomb = 8.988 * pow(10, 9);
 
         std::pair<double, double> CalculateFieldDirection(glm::vec2 arrow_position) const;
 

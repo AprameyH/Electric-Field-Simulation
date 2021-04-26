@@ -27,13 +27,16 @@ namespace chargefield {
                 arrows.push_back(arrow);
             }
         }
+
         return arrows;
     }
 
     std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
         std::vector<Charge> charges;
-        Charge charge_one(false, glm::vec2(300, 300), 8 * pow(10, -9));
+        Charge charge_one(glm::vec2(400, 400), -1);
         charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(500, 400), 1);
+        charges.push_back(charge_two);
         return charges;
     }
 

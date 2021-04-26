@@ -19,6 +19,7 @@ void Arrow::DrawArrow(const glm::vec2 &direction) {
     glm::vec2 start_point(x_start, y_start);
 
     ci::gl::drawLine(start_point, end_point);
+    ci::gl::drawSolidCircle(position_, kPivot);
 
     float line_length = distance(start_point, end_point);
 
@@ -33,11 +34,14 @@ void Arrow::DrawArrow(const glm::vec2 &direction) {
         arrow_tail = start_point;
     }
 
-    glm::vec2 unit_vec = (arrow_head - arrow_tail) / line_length;
+    glm::vec2 unit_vec = glm::vec2(arrow_head.x - arrow_tail.x,arrow_head.y - arrow_tail.y);
+    unit_vec = glm::vec2(unit_vec.x/line_length, unit_vec.y/line_length);
     glm::vec2 switch_vec(-unit_vec.y, unit_vec.x);
 
-    glm::vec2 first_corner = arrow_head - (kTriangleHeight * unit_vec) + (kTriangleWidth * switch_vec);
-    glm::vec2 second_corner = arrow_head - (kTriangleHeight * unit_vec) - (kTriangleWidth * switch_vec);
+    //glm::vec2 first_corner = arrow_head - (kTriangleHeight * unit_vec) + (kTriangleWidth * switch_vec);
+    glm::vec2 first_corner = glm::vec2(arrow_head.x - (kTriangleHeight * unit_vec).x + (kTriangleWidth * switch_vec).x, arrow_head.y - (kTriangleHeight * unit_vec).y + (kTriangleWidth * switch_vec).y);
+    //glm::vec2 second_corner = arrow_head - (kTriangleHeight * unit_vec) - (kTriangleWidth * switch_vec);
+    glm::vec2 second_corner = glm::vec2(arrow_head.x - (kTriangleHeight * unit_vec).x - (kTriangleWidth * switch_vec).x,arrow_head.y - (kTriangleHeight * unit_vec).y - (kTriangleWidth * switch_vec).y);
 
     ci::gl::drawSolidTriangle(arrow_head,
                               first_corner, second_corner);
