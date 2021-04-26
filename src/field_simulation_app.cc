@@ -3,7 +3,7 @@
 
 namespace chargefield {
 
-    ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList()) {
+    ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList(), GenerateChargeList()) {
         ci::app::setWindowSize(kWindowSize, kMargin);
     }
 
@@ -28,6 +28,13 @@ namespace chargefield {
             }
         }
         return arrows;
+    }
+
+    std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
+        std::vector<Charge> charges;
+        Charge charge_one(false, glm::vec2(300, 300), 8 * pow(10, -9));
+        charges.push_back(charge_one);
+        return charges;
     }
 
 }  // namespace chargefield

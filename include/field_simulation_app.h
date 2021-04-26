@@ -25,6 +25,8 @@ namespace chargefield {
          */
         std::vector<Arrow> GenerateArrowList() const;
 
+        std::vector<Charge> GenerateChargeList() const;
+
     private:
         const int kWindowSize = 1000;
         const int kMargin = 1000;
