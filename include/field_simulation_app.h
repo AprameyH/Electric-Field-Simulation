@@ -30,6 +30,7 @@ namespace chargefield {
     private:
         const int kWindowSize = 1000;
         const int kMargin = 1000;
+        const int kNumArrows = 36;
 
         const int kArrowMargin = 200;
         ElectricField electric_field_;

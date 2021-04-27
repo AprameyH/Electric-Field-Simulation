@@ -54,6 +54,9 @@ list(APPEND SOURCE_FILES src/electric_field.cc
         src/arrow.cc
         src/charge.cc)
 
+list(APPEND TEST_FILES tests/test_arrow.cc
+        tests/test_electric_field.cc
+        )
 
 ci_make_app(
         APP_NAME field-simulation-app

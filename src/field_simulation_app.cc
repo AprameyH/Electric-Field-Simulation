@@ -21,22 +21,24 @@ namespace chargefield {
     std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
         std::vector<Arrow> arrows;
 
-        for (size_t i = 0; i < 6; i++) {
-            for (size_t j = 0; j < 6; j++) {
+        for (size_t i = 0; i < sqrt(kNumArrows); i++) {
+            for (size_t j = 0; j < sqrt(kNumArrows); j++) {
                 Arrow arrow(glm::vec2(kArrowMargin + j * (kArrowMargin / 2), kArrowMargin + i * (kArrowMargin / 2)));
                 arrows.push_back(arrow);
             }
         }
+//        Arrow arrow(glm::vec2(500,300));
+//                arrows.push_back(arrow);
 
         return arrows;
     }
 
     std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
         std::vector<Charge> charges;
-        Charge charge_one(glm::vec2(400, 400), -1);
+        Charge charge_one(glm::vec2(400, 400), 1);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2(500, 400), 1);
-        charges.push_back(charge_two);
+//        Charge charge_two(glm::vec2(500, 400), -1);
+//        charges.push_back(charge_two);
         return charges;
     }
 
