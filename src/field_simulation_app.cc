@@ -27,7 +27,7 @@ namespace chargefield {
                 arrows.push_back(arrow);
             }
         }
-//        Arrow arrow(glm::vec2(500,300));
+//        Arrow arrow(glm::vec2(200,600));
 //                arrows.push_back(arrow);
 
         return arrows;

@@ -12,7 +12,7 @@ namespace chargefield {
     }
 
     void chargefield::ElectricField::Display() const {
-        for (Arrow arrow : arrow_layout_) {
+        for (const Arrow &arrow : arrow_layout_) {
             glm::vec2 field = CalculateFieldDirection(arrow.get_position());
             glm::vec2 direction = FindDirection(field, arrow.get_position());
             arrow.DrawArrow(direction);
@@ -38,7 +38,7 @@ namespace chargefield {
     }
 
     glm::vec2 ElectricField::CalculateFieldDirection(glm::vec2 arrow_position) const {
-        //Todo: Seems to not be working to the right of the particles.
+        //Todo: Seems to not be working to the left of the particles.
         double total_x_component = 0;
         double total_y_component = 0;
 
@@ -53,6 +53,10 @@ namespace chargefield {
             double x_dif = arrow_position.x - charge.get_position().x;
             double init_angle = atan(y_dif / x_dif);
 
+            if (x_dif < 0) {
+                init_angle = init_angle + kPi;
+            }
+
             double x_component = init_magnitude * cos(init_angle);
             double y_component = init_magnitude * sin(init_angle);
 
@@ -60,13 +64,18 @@ namespace chargefield {
             total_y_component = total_y_component + y_component;
         }
 
-        //Todo: If the magnitude is negative, reverse the angle somehow.
-
         return glm::vec2(total_x_component, total_y_component);
     }
 
     glm::vec2 ElectricField::FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const {
-        glm::vec2 end_point = arrow_pos + field;
+//        field = glm::vec2(field.x/100, field.y/100);
+glm::vec2 end_point;
+
+    end_point = arrow_pos + field;
+
+//    if (field.x > 0 && field.y < 0) {
+//        end_point = glm::vec2(-end_point.x,-end_point.y);
+//    }
 
         return end_point;
 //return glm::vec2();

@@ -21,7 +21,7 @@ namespace chargefield {
 
         const int charge_radius_ = 10;
         const double kCoulomb = 8.988 * pow(10, 9);
-        //const double kPi = atan(1) * 4;
+        const double kPi = atan(1) * 4;
 
         glm::vec2 CalculateFieldDirection(glm::vec2 arrow_position) const;
 

@@ -15,5 +15,5 @@ public:
 
     Arrow(const glm::vec2 &position);
 
-    void DrawArrow(const glm::vec2 &direction);
+    void DrawArrow(const glm::vec2 &direction) const;
 };

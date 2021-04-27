@@ -5,7 +5,7 @@ Arrow::Arrow(const glm::vec2 &position) : position_(position) {
 
 }
 
-void Arrow::DrawArrow(const glm::vec2 &direction) {
+void Arrow::DrawArrow(const glm::vec2 &direction) const{
     //Drawing the line
     float angle = atan((direction.y - position_.y) / (direction.x - position_.x));
 
