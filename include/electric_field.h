@@ -2,6 +2,8 @@
 
 #include <vector>
 #include "charge.h"
+#include "arrow.h"
+#include "math.h"
 
 namespace chargefield {
 class ElectricField {
@@ -11,6 +13,10 @@ public:
     void Display() const;
 
     void AdvanceOneFrame();
+
+    glm::vec2 CalculateFieldDirection(glm::vec2 arrow_position) const;
+
+    glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
 
 private:
     std::vector<Arrow> arrow_layout_;
@@ -23,9 +29,7 @@ private:
     const double kCoulomb = 8.988 * pow(10, 9);
     const double kPi = atan(1) * 4;
 
-    glm::vec2 CalculateFieldDirection(glm::vec2 arrow_position) const;
 
-    glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
 
 };
 

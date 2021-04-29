@@ -54,8 +54,10 @@ list(APPEND SOURCE_FILES src/electric_field.cc
         src/arrow.cc
         src/charge.cc)
 
-list(APPEND TEST_FILES tests/test_arrow.cc
+list(APPEND TEST_FILES
         tests/test_electric_field.cc
+        tests/test_field_simulation_app.cc
+        tests/test_charge.cc
         )
 
 ci_make_app(
