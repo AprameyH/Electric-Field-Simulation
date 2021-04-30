@@ -22,7 +22,7 @@ void chargefield::ElectricField::Display() const {
         if (charge.is_positive()) {
             ci::gl::color(ci::Color("red"));
         } else {
-            ci::gl::color(ci::Color("blue"));
+            ci::gl::color(ci::Color("cyan"));
         }
         ci::gl::drawSolidCircle(charge.get_position(), charge_radius_);
         ci::gl::drawStrokedCircle(charge.get_position(), charge_radius_);
@@ -30,10 +30,6 @@ void chargefield::ElectricField::Display() const {
 
     ci::gl::color(ci::Color("white"));
     ci::gl::drawStrokedRect(ci::Rectf(kFirstCorner, kSecondCorner));
-
-}
-
-void chargefield::ElectricField::AdvanceOneFrame() {
 
 }
 
@@ -71,4 +67,11 @@ glm::vec2 ElectricField::FindDirection(glm::vec2 field, glm::vec2 arrow_pos) con
     return end_point;
 }
 
+    std::vector<Charge> &ElectricField::get_charge_layout(){
+        return charge_layout_;
+    }
+
+    const int ElectricField::get_charge_radius() const {
+        return charge_radius_;
+    }
 }

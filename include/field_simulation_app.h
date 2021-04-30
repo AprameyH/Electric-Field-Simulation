@@ -15,8 +15,7 @@ public:
 
     void draw() override;
 
-    void update() override;
-
+    void mouseDrag(cinder::app::MouseEvent event) override;
 
     /**
      * The method generates the initial arrows.

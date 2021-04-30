@@ -12,11 +12,13 @@ public:
 
     void Display() const;
 
-    void AdvanceOneFrame();
-
     glm::vec2 CalculateFieldDirection(glm::vec2 arrow_position) const;
 
     glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
+
+    std::vector<Charge> &get_charge_layout();
+
+    const int get_charge_radius() const;
 
 private:
     std::vector<Arrow> arrow_layout_;

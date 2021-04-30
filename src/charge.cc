@@ -14,3 +14,7 @@ const glm::vec2 &Charge::get_position() const {
 double Charge::get_charge_val() const {
     return charge_val_;
 }
+
+void Charge::set_position(const glm::vec2 &position) {
+    position_ = position;
+}
