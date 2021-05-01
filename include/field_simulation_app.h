@@ -34,6 +34,8 @@ private:
     const int kArrowMargin = 200;
     ElectricField electric_field_;
 
+    const glm::vec2 kPositiveSource{600, 900};
+    const glm::vec2 kNegativeSource{650, 900};
 };
 
 };

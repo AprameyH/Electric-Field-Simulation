@@ -14,10 +14,10 @@ public:
 
     void set_position(const glm::vec2 &position);
 
+    friend bool operator==(Charge &one, Charge &two);
+
 private:
     glm::vec2 position_;
     double charge_val_;
-
-
 };
 

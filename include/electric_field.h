@@ -16,25 +16,27 @@ public:
 
     glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
 
+    void RemoveCharge(Charge &charge);
+
     std::vector<Charge> &get_charge_layout();
 
     const int get_charge_radius() const;
+    const glm::vec2 &get_first_corner() const;
+    const glm::vec2 &get_second_corner() const;
 
+private:
 private:
     std::vector<Arrow> arrow_layout_;
     std::vector<Charge> charge_layout_;
 
     const glm::vec2 kFirstCorner{100, 100};
+
     const glm::vec2 kSecondCorner{800, 800};
 
-    const int charge_radius_ = 7;
+    const int kChargeRadius = 7;
     const double kCoulomb = 8.988 * pow(10, 9);
     const double kPi = atan(1) * 4;
-
-
-
 };
-
 }
 
 
