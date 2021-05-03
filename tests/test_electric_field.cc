@@ -349,3 +349,23 @@ TEST_CASE("Find Direction") {
     }
 }
 
+TEST_CASE("Calculate magnitude") {
+    std::vector<Charge> charges;
+    std::vector<Arrow> arrows;
+
+    chargefield::ElectricField electric_field(arrows, charges);
+    SECTION("Positive values") {
+        glm::vec2 field{500, 100};
+        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(509.9019));
+    }
+
+    SECTION("Negative values") {
+        glm::vec2 field{-200, -350};
+        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(403.113));
+    }
+
+    SECTION("Positive and negative component") {
+        glm::vec2 field{2784, -1955};
+        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(3401.864));
+    }
+}
