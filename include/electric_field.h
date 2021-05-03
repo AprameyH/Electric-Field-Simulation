@@ -48,9 +48,8 @@ private:
     const double kCoulomb = 8.988 * pow(10, 9);
     const double kPi = atan(1) * 4;
 
-    const float kSaturation = 1000000;
+    const float kSaturation = 1250000;
 };
-
 }
 
 

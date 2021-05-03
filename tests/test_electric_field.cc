@@ -160,7 +160,7 @@ TEST_CASE("Calculate Field Direction for positive and negative charge") {
     std::vector<Charge> charges;
     Charge charge_one(glm::vec2(430, 470), 1);
     charges.push_back(charge_one);
-    Charge charge_two(glm::vec2(600, 600), -1);\
+    Charge charge_two(glm::vec2(600, 600), -1);
     charges.push_back(charge_two);
 
     SECTION("Arrow top left") {
@@ -208,11 +208,115 @@ TEST_CASE("Calculate Field Direction for positive and negative charge") {
     }
 }
 
+TEST_CASE("Field for different charge values") {
+    std::vector<Charge> charges;
+
+    SECTION("Large positive charges") {
+        Charge charge_one(glm::vec2(430, 470), 90);
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), 80);
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(200, 150));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-4357823, -5712121.5));
+    }
+
+    SECTION("Small positive charges") {
+        Charge charge_one(glm::vec2(430, 470), 8 * pow(10, -6));
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), 4 * pow(10, -6));
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(200, 150));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-0.336114109, -0.45009017));
+    }
+
+    SECTION("Large negative charges") {
+        Charge charge_one(glm::vec2(430, 470), -60);
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), -80);
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(600, 700));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-3918621.25, -77205664));
+    }
+
+    SECTION("Small negative charges") {
+        Charge charge_one(glm::vec2(430, 470), -8 * pow(10, -6));
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), -4 * pow(10, -6));
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(600, 700));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-0.522482812, -4.30208874));
+    }
+
+    SECTION("Large positive and negative charges") {
+        Charge charge_one(glm::vec2(430, 470), 90);
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), 80);
+        charges.push_back(charge_two);
+        Charge charge_three(glm::vec2(200,200), -80);
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(100, 800));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-7230449.5, 4467917.5));
+    }
+
+    SECTION("Small positive and negative charges") {
+        Charge charge_one(glm::vec2(430, 470), 7 * pow(10, -6));
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2(600, 600), 2 * pow(10, -6));
+        charges.push_back(charge_two);
+        Charge charge_three(glm::vec2(200, 200), -4 * pow(10, -6));
+        charges.push_back(charge_two);
+
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(100, 800));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+        REQUIRE(direction == glm::vec2(-0.319367796, 0.25030449));
+    }
+}
+
 TEST_CASE("Find Direction") {
     std::vector<Charge> charges;
     Charge charge_one(glm::vec2(430, 470), -1);
     charges.push_back(charge_one);
-    Charge charge_two(glm::vec2(600, 600), -1);\
+    Charge charge_two(glm::vec2(600, 600), -1);
     charges.push_back(charge_two);
 
     std::vector<Arrow> arrows;
@@ -244,3 +348,4 @@ TEST_CASE("Find Direction") {
         REQUIRE(end_point == glm::vec2(9150, 2200));
     }
 }
+
