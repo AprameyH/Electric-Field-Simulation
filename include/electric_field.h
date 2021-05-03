@@ -16,13 +16,18 @@ public:
 
     glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
 
+    float CalculateMagnitude(glm::vec2 direction) const;
+
     void RemoveCharge(Charge &charge);
+
     void AddCharge(Charge &charge);
 
     std::vector<Charge> &get_charge_layout();
 
     const int get_charge_radius() const;
+
     const glm::vec2 &get_first_corner() const;
+
     const glm::vec2 &get_second_corner() const;
 
     const glm::vec2 kPositiveSpawn{400, 150};
@@ -42,7 +47,10 @@ private:
     const int kChargeRadius = 7;
     const double kCoulomb = 8.988 * pow(10, 9);
     const double kPi = atan(1) * 4;
+
+    const float kSaturation = 1000000;
 };
+
 }
 
 

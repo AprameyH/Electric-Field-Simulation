@@ -43,6 +43,7 @@ private:
     std::vector<Charge> source_charge_layout_;
 
 };
+
 }
 
 
