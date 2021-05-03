@@ -17,6 +17,7 @@ public:
     glm::vec2 FindDirection(glm::vec2 field, glm::vec2 arrow_pos) const;
 
     void RemoveCharge(Charge &charge);
+    void AddCharge(Charge &charge);
 
     std::vector<Charge> &get_charge_layout();
 
@@ -24,7 +25,12 @@ public:
     const glm::vec2 &get_first_corner() const;
     const glm::vec2 &get_second_corner() const;
 
-private:
+    const glm::vec2 kPositiveSpawn{400, 150};
+    const glm::vec2 kNegativeSpawn{500, 150};
+
+    bool IsSpawnOccupied(int charge_val);
+
+
 private:
     std::vector<Arrow> arrow_layout_;
     std::vector<Charge> charge_layout_;

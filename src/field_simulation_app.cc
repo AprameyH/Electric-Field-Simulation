@@ -8,6 +8,11 @@ namespace chargefield {
 
 ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList(), GenerateChargeList()) {
     ci::app::setWindowSize(kWindowSize, kMargin);
+    Charge positive_source(kPositiveSource, 1);
+    Charge negative_source(kNegativeSource, -1);
+
+    source_charge_layout_.push_back(positive_source);
+    source_charge_layout_.push_back(negative_source);
 }
 
 void ElectricFieldApp::draw() {
@@ -16,11 +21,15 @@ void ElectricFieldApp::draw() {
 
     electric_field_.Display();
 
-    ci::gl::color(ci::Color("cyan"));
-    ci::gl::drawStrokedCircle(kNegativeSource, electric_field_.get_charge_radius());
+    for(Charge &charge : source_charge_layout_) {
+        if (charge.get_charge_val() > 0) {
+            ci::gl::color(ci::Color("red"));
+        } else {
+            ci::gl::color(ci::Color("cyan"));
+        }
+        ci::gl::drawStrokedCircle(charge.get_position(), electric_field_.get_charge_radius());
 
-    ci::gl::color(ci::Color("red"));
-    ci::gl::drawStrokedCircle(kPositiveSource, electric_field_.get_charge_radius());
+    }
 
     ci::gl::color(ci::Color("white"));
 }
@@ -51,15 +60,16 @@ void ElectricFieldApp::mouseDrag(cinder::app::MouseEvent event) {
     glm::vec2 mouse_loc = event.getPos();
 
     for (Charge &charge : electric_field_.get_charge_layout()) {
-        //Check whether the user is clicking within the circle
-        bool drag_within_circle =
+        //Check whether the user is clicking within an active charge
+        bool drag_active_circle =
                 (pow((mouse_loc.x - charge.get_position().x), 2) + pow((mouse_loc.y - charge.get_position().y), 2)) <=
                 pow(electric_field_.get_charge_radius(), 2);
-        if (drag_within_circle) {
-            if (mouse_loc.x <= electric_field_.get_first_corner().x
-                || mouse_loc.y <= electric_field_.get_first_corner().y
-                || mouse_loc.x >= electric_field_.get_second_corner().x
-                || mouse_loc.y >= electric_field_.get_second_corner().y) {
+
+        if (drag_active_circle) {
+            bool outside_x = mouse_loc.x <= electric_field_.get_first_corner().x || mouse_loc.x >= electric_field_.get_second_corner().x;
+            bool outside_y = mouse_loc.y <= electric_field_.get_first_corner().y || mouse_loc.y >= electric_field_.get_second_corner().y;
+            if (outside_x || outside_y) {
+
                 electric_field_.RemoveCharge(charge);
             }
             charge.set_position(mouse_loc);
@@ -67,4 +77,26 @@ void ElectricFieldApp::mouseDrag(cinder::app::MouseEvent event) {
     }
 }
 
+    void ElectricFieldApp::mouseDown(cinder::app::MouseEvent event) {
+        glm::vec2 mouse_loc = event.getPos();
+        if (event.isLeft()) {
+
+            for (Charge &charge: source_charge_layout_) {
+                bool click_source_circle =
+                        (pow((mouse_loc.x - charge.get_position().x), 2) + pow((mouse_loc.y - charge.get_position().y), 2)) <=
+                        pow(electric_field_.get_charge_radius(), 2);
+
+                if (click_source_circle && !electric_field_.IsSpawnOccupied(charge.get_charge_val())) {
+                    if (charge.get_charge_val() > 0) {
+                        Charge new_charge(electric_field_.kPositiveSpawn, charge.get_charge_val());
+                        electric_field_.AddCharge(new_charge);
+
+                    } else {
+                        Charge new_charge(electric_field_.kNegativeSpawn, charge.get_charge_val());
+                        electric_field_.AddCharge(new_charge);
+                    }
+                }
+            }
+        }
+    }
 }  // namespace chargefield

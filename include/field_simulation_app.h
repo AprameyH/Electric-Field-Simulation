@@ -17,6 +17,8 @@ public:
 
     void mouseDrag(cinder::app::MouseEvent event) override;
 
+    void mouseDown(cinder::app::MouseEvent event) override;
+
     /**
      * The method generates the initial arrows.
      * Used to initialize a container object.
@@ -34,10 +36,13 @@ private:
     const int kArrowMargin = 200;
     ElectricField electric_field_;
 
-    const glm::vec2 kPositiveSource{600, 900};
-    const glm::vec2 kNegativeSource{650, 900};
-};
+    const glm::vec2 kPositiveSource{400, 825};
+    const glm::vec2 kNegativeSource{450, 825};
+
+
+    std::vector<Charge> source_charge_layout_;
 
 };
+}
 
 

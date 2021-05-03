@@ -93,4 +93,19 @@ namespace chargefield {
         charge_layout_.erase(rmv_it);
     }
 
+    void ElectricField::AddCharge(Charge &charge) {
+        charge_layout_.push_back(charge);
+    }
+
+    bool ElectricField::IsSpawnOccupied(int charge_val) {
+        for(Charge &charge : charge_layout_) {
+            bool positive_occupied = charge_val > 0 && charge.get_position() == kPositiveSpawn;
+            bool negative_occupied = charge_val < 0 && charge.get_position() == kNegativeSpawn;
+            if(positive_occupied || negative_occupied)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
