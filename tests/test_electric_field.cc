@@ -280,7 +280,7 @@ TEST_CASE("Field for different charge values") {
         charges.push_back(charge_one);
         Charge charge_two(glm::vec2(600, 600), 80);
         charges.push_back(charge_two);
-        Charge charge_three(glm::vec2(200,200), -80);
+        Charge charge_three(glm::vec2(200, 200), -80);
         charges.push_back(charge_two);
 
         std::vector<Arrow> arrows;
@@ -356,16 +356,88 @@ TEST_CASE("Calculate magnitude") {
     chargefield::ElectricField electric_field(arrows, charges);
     SECTION("Positive values") {
         glm::vec2 field{500, 100};
-        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(509.9019));
+        REQUIRE(electric_field.CalculateMagnitude(field) == Approx(509.9019));
     }
 
     SECTION("Negative values") {
         glm::vec2 field{-200, -350};
-        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(403.113));
+        REQUIRE(electric_field.CalculateMagnitude(field) == Approx(403.113));
     }
 
     SECTION("Positive and negative component") {
         glm::vec2 field{2784, -1955};
-        REQUIRE( electric_field.CalculateMagnitude(field) == Approx(3401.864));
+        REQUIRE(electric_field.CalculateMagnitude(field) == Approx(3401.864));
     }
+}
+
+TEST_CASE("Test Spawn Occupied") {
+    std::vector<Charge> charges;
+    std::vector<Arrow> arrows;
+
+    SECTION("Positive and negative unoccupied") {
+        Charge charge_zero(glm::vec2(100, 200), 1);
+        charges.push_back(charge_zero);
+        chargefield::ElectricField electric_field(arrows, charges);
+
+        REQUIRE(electric_field.IsSpawnOccupied(1) == false);
+        REQUIRE(electric_field.IsSpawnOccupied(-1) == false);
+    }
+
+    SECTION("Only positive charge occupied") {
+        Charge charge_one(glm::vec2{400, 150}, 1);
+        charges.push_back(charge_one);
+
+        chargefield::ElectricField electric_field(arrows, charges);
+        REQUIRE(electric_field.IsSpawnOccupied(1) == true);
+        REQUIRE(electric_field.IsSpawnOccupied(-2) == false);
+    }
+
+
+    SECTION("Both charges occupied") {
+        Charge charge_one(glm::vec2{400, 150}, 1);
+        charges.push_back(charge_one);
+        Charge charge_two(glm::vec2{500, 150}, -1);
+        charges.push_back(charge_two);
+
+        chargefield::ElectricField electric_field(arrows, charges);
+        REQUIRE(electric_field.IsSpawnOccupied(1) == true);
+        REQUIRE(electric_field.IsSpawnOccupied(-2) == true);
+    }
+}
+
+TEST_CASE("Test Remove Charge") {
+    std::vector<Charge> charges;
+    Charge charge_one(glm::vec2{400, 150}, 1);
+    charges.push_back(charge_one);
+    Charge charge_two(glm::vec2{500, 150}, -1);
+    charges.push_back(charge_two);
+
+    std::vector<Arrow> arrows;
+
+    chargefield::ElectricField electric_field(arrows, charges);
+
+    electric_field.RemoveCharge(charge_one);
+
+    REQUIRE(electric_field.get_charge_layout().size() == 1);
+    REQUIRE(electric_field.get_charge_layout().at(0).get_position() == charge_two.get_position());
+    REQUIRE(electric_field.get_charge_layout().at(0).get_charge_val() == charge_two.get_charge_val());
+}
+
+TEST_CASE("Test Add Charge") {
+    std::vector<Charge> charges;
+    Charge charge_one(glm::vec2{400, 150}, 1);
+    charges.push_back(charge_one);
+    Charge charge_two(glm::vec2{500, 150}, -1);
+    charges.push_back(charge_two);
+
+    std::vector<Arrow> arrows;
+
+    chargefield::ElectricField electric_field(arrows, charges);
+
+    Charge charge_three(glm::vec2{300, 150}, 1);
+    electric_field.AddCharge(charge_three);
+
+    REQUIRE(electric_field.get_charge_layout().size() == 3);
+    REQUIRE(electric_field.get_charge_layout().at(2).get_position() == charge_three.get_position());
+    REQUIRE(electric_field.get_charge_layout().at(2).get_charge_val() == charge_three.get_charge_val());
 }
