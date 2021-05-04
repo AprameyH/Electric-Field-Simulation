@@ -48,7 +48,7 @@ public:
 
 private:
     const int kWindowSize = 1000;
-    const int kMargin = 1000;
+    const int kMargin = 900;
 
     const int kNumArrows = 81;
     const int kArrowMargin = 150;
@@ -60,6 +60,9 @@ private:
      */
     const glm::vec2 kPositiveSource{400, 825};
     const glm::vec2 kNegativeSource{450, 825};
+    const float kBelowSource = 50;
+
+    const std::string initial_instructions = "Click on the red circle to add a positive charge to the electric field. Click on the blue circle to add a negative charge to the electric field.\n Remove a charge by dragging it outside the box.";
 
     /**
      * Vector containing the source charges.

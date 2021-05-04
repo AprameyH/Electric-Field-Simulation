@@ -33,6 +33,7 @@ void ElectricFieldApp::draw() {
     }
 
     ci::gl::color(ci::Color("white"));
+    ci::gl::drawString(initial_instructions, glm::vec2(kPositiveSource.x, kPositiveSource.y + kBelowSource));
 }
 
 std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {

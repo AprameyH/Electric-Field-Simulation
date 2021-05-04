@@ -97,8 +97,8 @@ private:
      */
     const float kSaturation = 1250000;
 
-    const glm::vec2 kPositiveSpawn{400, 750};
-    const glm::vec2 kNegativeSpawn{500, 750};
+    const glm::vec2 kPositiveSpawn{338, 750};
+    const glm::vec2 kNegativeSpawn{563, 750};
 };
 }
 

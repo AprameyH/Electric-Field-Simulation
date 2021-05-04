@@ -406,7 +406,7 @@ TEST_CASE("Test Spawn Occupied") {
     }
 
     SECTION("Only positive charge occupied") {
-        Charge charge_one(glm::vec2{400, 750}, 1);
+        Charge charge_one(glm::vec2{338, 750}, 1);
         charges.push_back(charge_one);
 
         chargefield::ElectricField electric_field(arrows, charges);
@@ -416,9 +416,9 @@ TEST_CASE("Test Spawn Occupied") {
 
 
     SECTION("Both charges occupied") {
-        Charge charge_one(glm::vec2{400, 750}, 1);
+        Charge charge_one(glm::vec2{338, 750}, 1);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2{500, 750}, -1);
+        Charge charge_two(glm::vec2{563, 750}, -1);
         charges.push_back(charge_two);
 
         chargefield::ElectricField electric_field(arrows, charges);
