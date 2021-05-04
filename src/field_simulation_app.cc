@@ -3,31 +3,41 @@
 
 namespace chargefield {
 
-    ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList()) {
-        ci::app::setWindowSize(kWindowSize, kMargin);
-    }
+ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList(), GenerateChargeList()) {
+    ci::app::setWindowSize(kWindowSize, kMargin);
+}
 
-    void ElectricFieldApp::draw() {
-        ci::Color background_color("black");
-        ci::gl::clear(background_color);
+void ElectricFieldApp::draw() {
+    ci::Color background_color("black");
+    ci::gl::clear(background_color);
 
-        electric_field_.Display();
-    }
+    electric_field_.Display();
+}
 
-    void ElectricFieldApp::update() {
-        electric_field_.AdvanceOneFrame();
-    }
+void ElectricFieldApp::update() {
+    electric_field_.AdvanceOneFrame();
+}
 
-    std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
-        std::vector<Arrow> arrows;
+std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
+    std::vector<Arrow> arrows;
 
-        for (size_t i = 0; i < 6; i++) {
-            for (size_t j = 0; j < 6; j++) {
-                Arrow arrow(glm::vec2(kArrowMargin + j * (kArrowMargin / 2), kArrowMargin + i * (kArrowMargin / 2)));
-                arrows.push_back(arrow);
-            }
+    for (size_t i = 0; i < sqrt(kNumArrows); i++) {
+        for (size_t j = 0; j < sqrt(kNumArrows); j++) {
+            Arrow arrow(glm::vec2(kArrowMargin + j * (kArrowMargin / 2), kArrowMargin + i * (kArrowMargin / 2)));
+            arrows.push_back(arrow);
         }
-        return arrows;
     }
+
+    return arrows;
+}
+
+std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
+    std::vector<Charge> charges;
+    Charge charge_one(glm::vec2(600, 450), -1);
+    charges.push_back(charge_one);
+    Charge charge_two(glm::vec2(300, 450), 1);
+    charges.push_back(charge_two);
+    return charges;
+}
 
 }  // namespace chargefield

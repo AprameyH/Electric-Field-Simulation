@@ -5,34 +5,38 @@
 #include "electric_field.h"
 
 namespace chargefield {
+/**
+ * An app for visualizing interactions between charged particles and fields.
+ */
+class ElectricFieldApp : public ci::app::App {
+
+public:
+    ElectricFieldApp();
+
+    void draw() override;
+
+    void update() override;
+
+
     /**
-     * An app for visualizing interactions between charged particles and fields.
+     * The method generates the initial arrows.
+     * Used to initialize a container object.
+     * @return a vector of Arrow objects.
      */
-    class ElectricFieldApp : public ci::app::App {
+    std::vector<Arrow> GenerateArrowList() const;
 
-    public:
-        ElectricFieldApp();
+    std::vector<Charge> GenerateChargeList() const;
 
-        void draw() override;
+private:
+    const int kWindowSize = 1000;
+    const int kMargin = 1000;
+    const int kNumArrows = 36;
 
-        void update() override;
+    const int kArrowMargin = 200;
+    ElectricField electric_field_;
 
+};
 
-        /**
-         * The method generates the initial arrows.
-         * Used to initialize a container object.
-         * @return a vector of Arrow objects.
-         */
-        std::vector<Arrow> GenerateArrowList() const;
-
-    private:
-        const int kWindowSize = 1000;
-        const int kMargin = 1000;
-
-        const int kArrowMargin = 200;
-        ElectricField electric_field_;
-
-    };
 };
 
 
