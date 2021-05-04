@@ -92,6 +92,7 @@ void ElectricField::RemoveCharge(Charge &charge) {
             rmv_it = it;
         }
     }
+
     charge_layout_.erase(rmv_it);
 }
 
@@ -99,10 +100,10 @@ void ElectricField::AddCharge(Charge &charge) {
     charge_layout_.push_back(charge);
 }
 
-bool ElectricField::IsSpawnOccupied(int charge_val) {
+bool ElectricField::IsSpawnOccupied(bool is_positive) {
     for (Charge &charge : charge_layout_) {
-        bool positive_occupied = charge_val > 0 && charge.get_position() == kPositiveSpawn;
-        bool negative_occupied = charge_val < 0 && charge.get_position() == kNegativeSpawn;
+        bool positive_occupied = is_positive && charge.get_position() == kPositiveSpawn;
+        bool negative_occupied = !is_positive && charge.get_position() == kNegativeSpawn;
         if (positive_occupied || negative_occupied) {
             return true;
         }
@@ -114,4 +115,11 @@ float ElectricField::CalculateMagnitude(glm::vec2 field) const {
     return length(field);
 }
 
+    const glm::vec2 &ElectricField::get_positive_spawn() const {
+        return kPositiveSpawn;
+    }
+
+    const glm::vec2 &ElectricField::get_negative_spawn() const {
+        return kNegativeSpawn;
+    }
 }

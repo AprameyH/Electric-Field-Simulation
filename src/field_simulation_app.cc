@@ -24,11 +24,12 @@ void ElectricFieldApp::draw() {
     for (Charge &charge : source_charge_layout_) {
         if (charge.get_charge_val() > 0) {
             ci::gl::color(ci::Color("red"));
+
         } else {
             ci::gl::color(ci::Color("cyan"));
+
         }
         ci::gl::drawStrokedCircle(charge.get_position(), electric_field_.get_charge_radius());
-
     }
 
     ci::gl::color(ci::Color("white"));
@@ -49,10 +50,6 @@ std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
 
 std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
     std::vector<Charge> charges;
-    Charge charge_one(glm::vec2(600, 450), -1);
-    charges.push_back(charge_one);
-    Charge charge_two(glm::vec2(300, 450), 1);
-    charges.push_back(charge_two);
     return charges;
 }
 
@@ -73,6 +70,7 @@ void ElectricFieldApp::mouseDrag(cinder::app::MouseEvent event) {
             if (outside_x || outside_y) {
 
                 electric_field_.RemoveCharge(charge);
+                break;
             }
             charge.set_position(mouse_loc);
         }
@@ -89,13 +87,13 @@ void ElectricFieldApp::mouseDown(cinder::app::MouseEvent event) {
                      pow((mouse_loc.y - charge.get_position().y), 2)) <=
                     pow(electric_field_.get_charge_radius(), 2);
 
-            if (click_source_circle && !electric_field_.IsSpawnOccupied(charge.get_charge_val())) {
+            if (click_source_circle && !electric_field_.IsSpawnOccupied(charge.is_positive())) {
                 if (charge.get_charge_val() > 0) {
-                    Charge new_charge(electric_field_.kPositiveSpawn, charge.get_charge_val());
+                    Charge new_charge(electric_field_.get_positive_spawn(), charge.get_charge_val());
                     electric_field_.AddCharge(new_charge);
 
                 } else {
-                    Charge new_charge(electric_field_.kNegativeSpawn, charge.get_charge_val());
+                    Charge new_charge(electric_field_.get_negative_spawn(), charge.get_charge_val());
                     electric_field_.AddCharge(new_charge);
                 }
             }

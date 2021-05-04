@@ -6,6 +6,10 @@ class Charge {
 public:
     Charge(const glm::vec2 &position, double charge_val);
 
+    /**
+     * Determines whether the charge is positive or negative.
+     * @return true if the charge is positive.
+     */
     bool is_positive() const;
 
     const glm::vec2 &get_position() const;

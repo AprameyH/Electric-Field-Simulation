@@ -206,6 +206,28 @@ TEST_CASE("Calculate Field Direction for positive and negative charge") {
         glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
         REQUIRE(direction == glm::vec2(1094268.38, 363012.625));
     }
+
+    SECTION("Different charge magnitudes") {
+        std::vector<Arrow> arrows;
+        Arrow arrow(glm::vec2(500, 600));
+        arrows.push_back(arrow);
+
+        chargefield::ElectricField field(arrows, charges);
+
+        glm::vec2 direction = field.CalculateFieldDirection(arrow.get_position());
+
+        std::vector<Charge> comparison_charges;
+        Charge comparison_charge_one(glm::vec2(430, 470), 7);
+        charges.push_back(comparison_charge_one);
+        Charge comparison_charge_two(glm::vec2(600, 600), -7);
+        charges.push_back(comparison_charge_two);
+
+        chargefield::ElectricField comparison_field(arrows, charges);
+
+        glm::vec2 comparison_direction = field.CalculateFieldDirection(arrow.get_position());
+
+        REQUIRE(direction == comparison_direction);
+    }
 }
 
 TEST_CASE("Field for different charge values") {
@@ -228,9 +250,9 @@ TEST_CASE("Field for different charge values") {
     }
 
     SECTION("Small positive charges") {
-        Charge charge_one(glm::vec2(430, 470), 8 * pow(10, -6));
+        Charge charge_one(glm::vec2(430, 470), 8e-6);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2(600, 600), 4 * pow(10, -6));
+        Charge charge_two(glm::vec2(600, 600), 4e-6);
         charges.push_back(charge_two);
 
         std::vector<Arrow> arrows;
@@ -260,9 +282,9 @@ TEST_CASE("Field for different charge values") {
     }
 
     SECTION("Small negative charges") {
-        Charge charge_one(glm::vec2(430, 470), -8 * pow(10, -6));
+        Charge charge_one(glm::vec2(430, 470), -8e-6);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2(600, 600), -4 * pow(10, -6));
+        Charge charge_two(glm::vec2(600, 600), -4e-6);
         charges.push_back(charge_two);
 
         std::vector<Arrow> arrows;
@@ -294,11 +316,11 @@ TEST_CASE("Field for different charge values") {
     }
 
     SECTION("Small positive and negative charges") {
-        Charge charge_one(glm::vec2(430, 470), 7 * pow(10, -6));
+        Charge charge_one(glm::vec2(430, 470), 7e-6);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2(600, 600), 2 * pow(10, -6));
+        Charge charge_two(glm::vec2(600, 600), 2e-6);
         charges.push_back(charge_two);
-        Charge charge_three(glm::vec2(200, 200), -4 * pow(10, -6));
+        Charge charge_three(glm::vec2(200, 200), -4e-6);
         charges.push_back(charge_two);
 
         std::vector<Arrow> arrows;
@@ -379,29 +401,29 @@ TEST_CASE("Test Spawn Occupied") {
         charges.push_back(charge_zero);
         chargefield::ElectricField electric_field(arrows, charges);
 
-        REQUIRE(electric_field.IsSpawnOccupied(1) == false);
-        REQUIRE(electric_field.IsSpawnOccupied(-1) == false);
+        REQUIRE(electric_field.IsSpawnOccupied(true) == false);
+        REQUIRE(electric_field.IsSpawnOccupied(false) == false);
     }
 
     SECTION("Only positive charge occupied") {
-        Charge charge_one(glm::vec2{400, 150}, 1);
+        Charge charge_one(glm::vec2{400, 750}, 1);
         charges.push_back(charge_one);
 
         chargefield::ElectricField electric_field(arrows, charges);
-        REQUIRE(electric_field.IsSpawnOccupied(1) == true);
-        REQUIRE(electric_field.IsSpawnOccupied(-2) == false);
+        REQUIRE(electric_field.IsSpawnOccupied(true) == true);
+        REQUIRE(electric_field.IsSpawnOccupied(false) == false);
     }
 
 
     SECTION("Both charges occupied") {
-        Charge charge_one(glm::vec2{400, 150}, 1);
+        Charge charge_one(glm::vec2{400, 750}, 1);
         charges.push_back(charge_one);
-        Charge charge_two(glm::vec2{500, 150}, -1);
+        Charge charge_two(glm::vec2{500, 750}, -1);
         charges.push_back(charge_two);
 
         chargefield::ElectricField electric_field(arrows, charges);
-        REQUIRE(electric_field.IsSpawnOccupied(1) == true);
-        REQUIRE(electric_field.IsSpawnOccupied(-2) == true);
+        REQUIRE(electric_field.IsSpawnOccupied(true) == true);
+        REQUIRE(electric_field.IsSpawnOccupied(false) == true);
     }
 }
 
