@@ -15,12 +15,29 @@ MacOS
 Dependencies
     1. $ brew install gcc cmake sdl2
 
-QuickStart
-    1. $ mkdir build
+Install LibCinder
+    1. Download Cinder (v0.9.2) for your platform from https://libcinder.org/download.
+        Create a folder named Cinder and extract the downloaded item into it.
+        We’ll call this folder ~/Cinder throughout the instructions
+    2. To build libcinder from the command line, first make sure you have CMake version 2.8 or later installed.
+        Do the following from within the main cinder repo path:
+        mkdir build
+        cd build
+        cmake ..
+        make -j4
+
+        By default you'll be building for Debug configuration, to build release change the above cmake command to:
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        make -j4
+
+Build the app.
+Clone the repository into a subfolder under ~Cinder and then:
+1. $ mkdir build
     $ cd build/
     $ cmake ..
-    $ make
-    $ ./nothing
+    $ make -j4
+   
+2. Load the Cmake project
 
-1. Navigate to ~/cmake-build-debug/Debug/field-simulation-app from the project directory.
-2. Run field-simulation-app.app.
+3. Navigate to ~/cmake-build-debug/Debug/field-simulation-app from the project directory.
+4. Run field-simulation-app.app.
