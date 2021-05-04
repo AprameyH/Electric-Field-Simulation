@@ -21,18 +21,21 @@ Install LibCinder
         We’ll call this folder ~/Cinder throughout the instructions
     2. To build libcinder from the command line, first make sure you have CMake version 2.8 or later installed.
         Do the following from within the main cinder repo path:
-        mkdir build
-        cd build
-        cmake ..
-        make -j4
+    
+    $ mkdir build
+    $ cd build 
+    $ cmake ..
+    $ make -j4
 
-        By default you'll be building for Debug configuration, to build release change the above cmake command to:
-        cmake -DCMAKE_BUILD_TYPE=Release ..
-        make -j4
+By default you'll be building for Debug configuration, to build release change the above cmake command to:
+        
+    $ cmake -DCMAKE_BUILD_TYPE=Release ..
+    $ make -j4
 
 Build the app.
 Clone the repository into a subfolder under ~Cinder and then:
-1. $ mkdir build
+    
+    $ mkdir build
     $ cd build/
     $ cmake ..
     $ make -j4
