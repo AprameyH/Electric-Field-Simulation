@@ -20,6 +20,8 @@ void Arrow::DrawArrow(const glm::vec2 &direction) const{
 
     ci::gl::drawLine(start_point, end_point);
     ci::gl::drawStrokedCircle(position_, kPivot);
+    ci::gl::drawSolidCircle(position_, kPivot);
+
 
     float line_length = distance(start_point, end_point);
 

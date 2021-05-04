@@ -30,10 +30,14 @@ void ElectricFieldApp::draw() {
 
         }
         ci::gl::drawStrokedCircle(charge.get_position(), electric_field_.get_charge_radius());
+        ci::gl::drawSolidCircle(charge.get_position(), electric_field_.get_charge_radius());
+
+        ci::gl::drawString(std::to_string(static_cast<int>(charge.get_charge_val())), glm::vec2(charge.get_position().x, charge.get_position().y + kBelowSource));
     }
 
     ci::gl::color(ci::Color("white"));
-    ci::gl::drawString(initial_instructions, glm::vec2(kPositiveSource.x, kPositiveSource.y + kBelowSource));
+    ci::gl::drawString(initial_instructions, kInstructions);
+    ci::gl::drawString(remove_instructions, kRemoveInstructions);
 }
 
 std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
