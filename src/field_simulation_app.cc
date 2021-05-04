@@ -29,7 +29,6 @@ void ElectricFieldApp::draw() {
             ci::gl::color(ci::Color("cyan"));
 
         }
-        ci::gl::drawStrokedCircle(charge.get_position(), electric_field_.get_charge_radius());
         ci::gl::drawSolidCircle(charge.get_position(), electric_field_.get_charge_radius());
 
         ci::gl::drawString(std::to_string(static_cast<int>(charge.get_charge_val())), glm::vec2(charge.get_position().x, charge.get_position().y + kBelowSource));
