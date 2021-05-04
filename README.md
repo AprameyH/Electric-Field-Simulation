@@ -12,5 +12,15 @@ them out of the electric field box.
 **Setup**
 
 MacOS
+Dependencies
+    1. $ brew install gcc cmake sdl2
+
+QuickStart
+    1. $ mkdir build
+    $ cd build/
+    $ cmake ..
+    $ make
+    $ ./nothing
+
 1. Navigate to ~/cmake-build-debug/Debug/field-simulation-app from the project directory.
 2. Run field-simulation-app.app.

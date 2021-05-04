@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="final-project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\proj\;CMake Files\..\..\proj\cmake\;CMake Files\..\..\proj\cmake\modules\;CMake Files\..\..\lib\;CMake Files\..\..\lib\macosx\;CMake Files\..\..\lib\macosx\Debug\;CMake Files\..\..\build\;CMake Files\..\..\build\lib\;CMake Files\..\..\build\lib\macosx\;CMake Files\..\..\build\lib\macosx\Debug\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="field-simulation-test">
+				<Option output="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Debug/field-simulation-test/field-simulation-test.app/Contents/MacOS/field-simulation-test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/include"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/_deps/catch2-src/single_include"/>
+					<Add directory="/Users/apramey/Cinder/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 field-simulation-test"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="field-simulation-test/fast">
+				<Option output="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Debug/field-simulation-test/field-simulation-test.app/Contents/MacOS/field-simulation-test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/include"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/_deps/catch2-src/single_include"/>
+					<Add directory="/Users/apramey/Cinder/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 field-simulation-test/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="field-simulation-app">
+				<Option output="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Debug/field-simulation-app/field-simulation-app.app/Contents/MacOS/field-simulation-app" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/include"/>
+					<Add directory="/Users/apramey/Cinder/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 field-simulation-app"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="field-simulation-app/fast">
+				<Option output="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Debug/field-simulation-app/field-simulation-app.app/Contents/MacOS/field-simulation-app" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apramey/Cinder/my-projects/final-project-AprameyH/build"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add directory="/Users/apramey/Cinder/my-projects/final-project-AprameyH/include"/>
+					<Add directory="/Users/apramey/Cinder/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 field-simulation-app/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/apramey/Cinder/my-projects/final-project-AprameyH/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/apps/cinder_app_main.cc">
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/src/arrow.cc">
+			<Option target="field-simulation-test"/>
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/src/charge.cc">
+			<Option target="field-simulation-test"/>
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/src/electric_field.cc">
+			<Option target="field-simulation-test"/>
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/src/field_simulation_app.cc">
+			<Option target="field-simulation-test"/>
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/tests/test_charge.cc">
+			<Option target="field-simulation-test"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/tests/test_electric_field.cc">
+			<Option target="field-simulation-test"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/tests/test_main.cc">
+			<Option target="field-simulation-test"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/samples/data/CinderApp.icns">
+			<Option target="field-simulation-test"/>
+			<Option target="field-simulation-app"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/../../proj/cmake/configure.cmake">
+			<Option virtualFolder="CMake Files\..\..\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/../../proj/cmake/utilities.cmake">
+			<Option virtualFolder="CMake Files\..\..\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/../../proj/cmake/modules/cinderMakeApp.cmake">
+			<Option virtualFolder="CMake Files\..\..\proj\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/../../lib/macosx/Debug/cinderConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\lib\macosx\Debug\"/>
+		</Unit>
+		<Unit filename="/Users/apramey/Cinder/my-projects/final-project-AprameyH/../../build/lib/macosx/Debug/cinderTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\build\lib\macosx\Debug\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

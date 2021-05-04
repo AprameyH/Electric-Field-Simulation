@@ -26,7 +26,6 @@ void chargefield::ElectricField::Display() const {
         } else {
             ci::gl::color(ci::Color("cyan"));
         }
-        ci::gl::drawSolidCircle(charge.get_position(), kChargeRadius);
         ci::gl::drawStrokedCircle(charge.get_position(), kChargeRadius);
     }
 

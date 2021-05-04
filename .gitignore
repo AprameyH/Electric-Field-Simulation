@@ -31,9 +31,9 @@
 *.lib
 
 # Executables
-*.exe
-*.out
-*.app
+#*.exe
+#*.out
+#*.app
 
 ### CLion ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -74,7 +74,7 @@
 
 # CMake
 cmake-build-*/
-build/
+#build/
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
