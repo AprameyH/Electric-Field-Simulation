@@ -66,7 +66,7 @@ private:
     const glm::vec2 kRemoveInstructions{50, 70};
 
     const std::string initial_instructions = "Click on the red circle to add a positive charge to the electric field. Click on the blue circle to add a negative charge to the electric field.";
-    const std::string remove_instructions = "Remove a charge by dragging it outside the box.";
+    const std::string remove_instructions = "Click and drag to move charges! Remove a charge by dragging it outside the box.";
 
     /**
      * Vector containing the source charges.
