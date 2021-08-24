@@ -1,10 +1,18 @@
 #include <cinder/gl/wrapper.h>
+#include <cinder/gl/draw.h>
 #include "field_simulation_app.h"
+#include "cinder/app/App.h"
+
 
 namespace chargefield {
 
 ElectricFieldApp::ElectricFieldApp() : electric_field_(GenerateArrowList(), GenerateChargeList()) {
     ci::app::setWindowSize(kWindowSize, kMargin);
+    Charge positive_source(kPositiveSource, 1);
+    Charge negative_source(kNegativeSource, -1);
+
+    source_charge_layout_.push_back(positive_source);
+    source_charge_layout_.push_back(negative_source);
 }
 
 void ElectricFieldApp::draw() {
@@ -12,10 +20,23 @@ void ElectricFieldApp::draw() {
     ci::gl::clear(background_color);
 
     electric_field_.Display();
-}
 
-void ElectricFieldApp::update() {
-    electric_field_.AdvanceOneFrame();
+    for (Charge &charge : source_charge_layout_) {
+        if (charge.get_charge_val() > 0) {
+            ci::gl::color(ci::Color("red"));
+
+        } else {
+            ci::gl::color(ci::Color("cyan"));
+
+        }
+        ci::gl::drawSolidCircle(charge.get_position(), electric_field_.get_charge_radius());
+
+        ci::gl::drawString(std::to_string(static_cast<int>(charge.get_charge_val())), glm::vec2(charge.get_position().x, charge.get_position().y + kBelowSource));
+    }
+
+    ci::gl::color(ci::Color("white"));
+    ci::gl::drawString(initial_instructions, kInstructions);
+    ci::gl::drawString(remove_instructions, kRemoveInstructions);
 }
 
 std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
@@ -33,11 +54,55 @@ std::vector<Arrow> ElectricFieldApp::GenerateArrowList() const {
 
 std::vector<Charge> ElectricFieldApp::GenerateChargeList() const {
     std::vector<Charge> charges;
-    Charge charge_one(glm::vec2(600, 450), -1);
-    charges.push_back(charge_one);
-    Charge charge_two(glm::vec2(300, 450), 1);
-    charges.push_back(charge_two);
     return charges;
+}
+
+void ElectricFieldApp::mouseDrag(cinder::app::MouseEvent event) {
+    glm::vec2 mouse_loc = event.getPos();
+
+    for (Charge &charge : electric_field_.get_charge_layout()) {
+        //Check whether the user is clicking within an active charge
+        bool drag_active_circle =
+                (pow((mouse_loc.x - charge.get_position().x), 2) + pow((mouse_loc.y - charge.get_position().y), 2)) <=
+                pow(electric_field_.get_charge_radius(), 2);
+
+        if (drag_active_circle) {
+            bool outside_x = mouse_loc.x <= electric_field_.get_first_corner().x ||
+                             mouse_loc.x >= electric_field_.get_second_corner().x;
+            bool outside_y = mouse_loc.y <= electric_field_.get_first_corner().y ||
+                             mouse_loc.y >= electric_field_.get_second_corner().y;
+            if (outside_x || outside_y) {
+
+                electric_field_.RemoveCharge(charge);
+                break;
+            }
+            charge.set_position(mouse_loc);
+        }
+    }
+}
+
+void ElectricFieldApp::mouseDown(cinder::app::MouseEvent event) {
+    glm::vec2 mouse_loc = event.getPos();
+    if (event.isLeft()) {
+
+        for (Charge &charge: source_charge_layout_) {
+            bool click_source_circle =
+                    (pow((mouse_loc.x - charge.get_position().x), 2) +
+                     pow((mouse_loc.y - charge.get_position().y), 2)) <=
+                    pow(electric_field_.get_charge_radius(), 2);
+
+            if (click_source_circle && !electric_field_.IsSpawnOccupied(charge.is_positive())) {
+                if (charge.get_charge_val() > 0) {
+                    Charge new_charge(electric_field_.get_positive_spawn(), charge.get_charge_val());
+                    electric_field_.AddCharge(new_charge);
+
+                } else {
+                    Charge new_charge(electric_field_.get_negative_spawn(), charge.get_charge_val());
+                    electric_field_.AddCharge(new_charge);
+                }
+            }
+        }
+    }
 }
 
 }  // namespace chargefield

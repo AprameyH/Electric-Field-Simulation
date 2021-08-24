@@ -56,7 +56,6 @@ list(APPEND SOURCE_FILES src/electric_field.cc
 
 list(APPEND TEST_FILES
         tests/test_electric_field.cc
-        tests/test_field_simulation_app.cc
         tests/test_charge.cc
         )
 
@@ -68,7 +67,7 @@ ci_make_app(
 )
 
 ci_make_app(
-        APP_NAME gas-simulation-test
+        APP_NAME field-simulation-test
         CINDER_PATH ${CINDER_PATH}
         SOURCES tests/test_main.cc ${SOURCE_FILES} ${TEST_FILES}
         INCLUDES include
@@ -76,5 +75,5 @@ ci_make_app(
 )
 
 if (MSVC)
-    set_property(TARGET gas-simulation-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
+    set_property(TARGET field-simulation-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
 endif ()

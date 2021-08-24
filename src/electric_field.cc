@@ -15,6 +15,8 @@ void chargefield::ElectricField::Display() const {
     for (const Arrow &arrow : arrow_layout_) {
         glm::vec2 field = CalculateFieldDirection(arrow.get_position());
         glm::vec2 direction = FindDirection(field, arrow.get_position());
+
+        ci::gl::color(ci::Color::gray(CalculateMagnitude(field)/kSaturation));
         arrow.DrawArrow(direction);
     }
 
@@ -22,18 +24,13 @@ void chargefield::ElectricField::Display() const {
         if (charge.is_positive()) {
             ci::gl::color(ci::Color("red"));
         } else {
-            ci::gl::color(ci::Color("blue"));
+            ci::gl::color(ci::Color("cyan"));
         }
-        ci::gl::drawSolidCircle(charge.get_position(), charge_radius_);
-        ci::gl::drawStrokedCircle(charge.get_position(), charge_radius_);
+        ci::gl::drawSolidCircle(charge.get_position(), kChargeRadius);
     }
 
     ci::gl::color(ci::Color("white"));
     ci::gl::drawStrokedRect(ci::Rectf(kFirstCorner, kSecondCorner));
-
-}
-
-void chargefield::ElectricField::AdvanceOneFrame() {
 
 }
 
@@ -71,4 +68,57 @@ glm::vec2 ElectricField::FindDirection(glm::vec2 field, glm::vec2 arrow_pos) con
     return end_point;
 }
 
+std::vector<Charge> &ElectricField::get_charge_layout() {
+    return charge_layout_;
+}
+
+const int ElectricField::get_charge_radius() const {
+    return kChargeRadius;
+}
+
+const glm::vec2 &ElectricField::get_first_corner() const {
+    return kFirstCorner;
+}
+
+const glm::vec2 &ElectricField::get_second_corner() const {
+    return kSecondCorner;
+}
+
+void ElectricField::RemoveCharge(Charge &charge) {
+    auto rmv_it = charge_layout_.begin();
+    for (auto it = charge_layout_.begin(); it != charge_layout_.end(); ++it) {
+        if (*it == charge) {
+            rmv_it = it;
+        }
+    }
+
+    charge_layout_.erase(rmv_it);
+}
+
+void ElectricField::AddCharge(Charge &charge) {
+    charge_layout_.push_back(charge);
+}
+
+bool ElectricField::IsSpawnOccupied(bool is_positive) {
+    for (Charge &charge : charge_layout_) {
+        bool positive_occupied = is_positive && charge.get_position() == kPositiveSpawn;
+        bool negative_occupied = !is_positive && charge.get_position() == kNegativeSpawn;
+        if (positive_occupied || negative_occupied) {
+            return true;
+        }
+    }
+    return false;
+}
+
+float ElectricField::CalculateMagnitude(glm::vec2 field) const {
+    return length(field);
+}
+
+    const glm::vec2 &ElectricField::get_positive_spawn() const {
+        return kPositiveSpawn;
+    }
+
+    const glm::vec2 &ElectricField::get_negative_spawn() const {
+        return kNegativeSpawn;
+    }
 }

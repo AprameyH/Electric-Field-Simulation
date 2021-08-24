@@ -14,3 +14,12 @@ const glm::vec2 &Charge::get_position() const {
 double Charge::get_charge_val() const {
     return charge_val_;
 }
+
+void Charge::set_position(const glm::vec2 &position) {
+    position_ = position;
+}
+
+bool operator==(Charge &one, Charge &two) {
+    return one.position_ == two.position_ && one.charge_val_ == two.charge_val_;
+}
+
